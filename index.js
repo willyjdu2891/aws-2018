@@ -57,7 +57,7 @@ app.get(BASE_API_PATH + "/contacts", (req, res) => {
 });
 
 app.post(BASE_API_PATH + "/contacts", (req, res) => {
-    // Create a new contact
+    // Create a new contact----------
     console.log(Date()+" - POST /contacts");
 
     var contact = req.body;
