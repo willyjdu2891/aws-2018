@@ -9,31 +9,33 @@
         <script type="text/javascript" src="list-ctrl.js"></script>
     </head>
     <body ng-controller="ListCtrl">
-        <h1>Contacts</h1> 
-        <form name="contactform">
-            <input type="text" name=""/>
-            <input type="submit" value="Submit"/>
-        
-        <table class="table">
-            <thead>
+        <h1>Contacts</h1>
+        <form name="contactForm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>&nbsp;</th>
+                    <td><input class="form-control" ng-model="newContact.name"></td>
+                    <td><input ng-class="{'is-invalid': !contactForm.phone.$valid}" name="phone" class="form-control" required ng-pattern="/^[0-9]+$/" ng-model="newContact.phone"></td>
+                    <td><button class="btn btn-primary" ng-disabled="!contactForm.$valid"  ng-click="addContact()">Add Contact</button> </td>
+                    <td><button class="btn btn-primary"   ng-click="delallContact()">Borrar todos</button> </td>
+                    <td><button class="btn btn-primary"   ng-click="delContacto(contact.name)">Borrar </button> </td>
+                    <td><button class="btn btn-primary"   ng-click="updateContacto(contact.name)">Actualizar </button> </td>
+                    <td><button class="btn btn-primary"   ng-click="getcon(contact.name)">Get One </button> </td>
                 </tr>
-            </thead>
-            <tr>
-                <td><input class="form-control" ng-model="newContact.name"></td>
-                <td><input ng-class="{'is-invalid': !contactform.phone.$valid}" name="phone" class:"form-control" required ng-pattern="/^[0-9]+$/" ng-model="newContact.phone"></td>
-                <td><button class="btn btn-primary" ng-disabled="!contactform.$valid" ng-click="addContact()">Add Contact</button> </td>
-            </tr>
-
-            <tr ng-repeat="contact in contacts">
-                <td>{{contact.name}}</td>
-                <td>{{contact.phone}}</td>
-            </tr>
-        </table>
+    
+                <tr ng-repeat="contact in contacts">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.phone}}</td>
+                </tr>
+            </table>
         </form>
         <h5><a href="https://documenter.getpostman.com/view/359472/aws1718/RVnTmM8k">api documentation</a></h5>
+        <img src="https://infoes.examtime.com/files/2014/06/Universidad-de-Sevilla-1024x532.jpg" class="img"></img>
     </body>
 </html>

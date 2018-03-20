@@ -10,6 +10,23 @@ angular
             });
         }
         
+$scope.getcon = function (){       
+
+$http.get("/api/v1/contacts/"+$scope.newContact.name).then(function(response) {
+  $scope.contacts= response.data;
+});
+}
+        /* $scope.getcontacto = function (){
+            
+            $http
+            
+                .get("/api/v1/contacts/Willy" + ' '  )
+                .then(function (){
+                    refresh();  
+                });
+        
+        }*/
+        
         $scope.addContact = function (){
             
             $http
@@ -20,6 +37,36 @@ angular
         
         }
         
-        refresh();
+         $scope.delallContact = function (){
+            
+            $http
+                .delete("/api/v1/contacts", $scope.delallContact)
+                .then(function (){
+                    refresh();  
+                });
+        
+        }
+        
+        $scope.delContacto = function (){
+            
+            $http
+                .delete("/api/v1/contacts/" + $scope.newContact.name , $scope.deleteContacto)
+                .then(function (){
+                    refresh();  
+                });
+        
+        }
+        
+        $scope.updateContacto = function (){
+            
+            $http
+                .put("/api/v1/contacts/" + $scope.newContact.name , {name:$scope.newContact.name, phone:$scope.newContact.phone})
+                .then(function (){
+                    refresh();  
+                });
+        
+        }
+        
+       // refresh();
         
     });
