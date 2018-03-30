@@ -3,7 +3,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require('path');
-var contacts = require("./contacts.js");
+var groups = require("./groups.js");
 
 var port = (process.env.PORT || 16778);
 var baseAPI = "/api/v1";
@@ -13,74 +13,74 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-contacts.add([{
-        name: "pepe",
+groups.add([{
+ /*       name: "pepe",
         phone: "12345",
         email: "pepe@pepe.com"
     }, {
         name: "luis",
         phone: "67890",
-        email: "luis@pepe.com"
+        email: "luis@pepe.com" */
     }]);
 
-app.get(baseAPI + "/contacts", (request, response) => {
-    console.log("GET /contacts"); 
+app.get(baseAPI + "/groups", (request, response) => {
+    console.log("GET /groups"); 
     
-    contacts.allContacts((err,contacts)=>{
-        response.send(contacts);    
+    groups.allGroups((err,groups)=>{
+        response.send(groups);    
     });
 });
 
-app.post(baseAPI + "/contacts", (request, response) => {
-    console.log("POST /contacts");
-    var contact = request.body;
-    contacts.add(contact);
+app.post(baseAPI + "/groups", (request, response) => {
+    console.log("POST /groups");
+    var group = request.body;
+    groups.add(group);
     response.sendStatus(201);
 });
 
-app.delete(baseAPI + "/contacts", (request, response) => {
-    console.log("DELETE /contacts");
+app.delete(baseAPI + "/groups", (request, response) => {
+    console.log("DELETE /groups");
 
-    contacts.removeAll((err,numRemoved)=>{
-        console.log("contacts removed:"+numRemoved);
+    groups.removeAll((err,numRemoved)=>{
+        console.log("groups removed:"+numRemoved);
         response.sendStatus(200);    
     });
 
 });
 
-app.get(baseAPI + "/contacts/:name", (request, response) => {
-    console.log("GET /contacts/"+name);
-    var name = request.params.name;
+app.get(baseAPI + "/groups/:id", (request, response) => {
+    console.log("GET /groups/"+id);
+    var id = request.params.id;
 
-    contacts.get(name,(err,contacts)=>{
-        if (contacts.length === 0) {
+    groups.get(id,(err,groups)=>{
+        if (groups.length === 0) {
             response.sendStatus(404);
         }
         else {
-            response.send(contacts);  
+            response.send(groups);  
         }
     });
 });
 
 
-app.delete(baseAPI + "/contacts/:name", (request, response) => {
-    var name = request.params.name;
+app.delete(baseAPI + "/groups/:id", (request, response) => {
+    var id = request.params.id;
 
-    contacts.remove(name,(err,numRemoved)=>{
-        console.log("contacts removed:"+numRemoved);
+    groups.remove(id,(err,numRemoved)=>{
+        console.log("groups removed:"+numRemoved);
         response.sendStatus(200);    
     });
 
-    console.log("DELETE /contacts/" + name);
+    console.log("DELETE /groups/" + id);
 });
 
 
-app.put(baseAPI + "/contacts/:name", (request, response) => {
-    var name = request.params.name;
-    var updatedContact = request.body;
+app.put(baseAPI + "/groups/:id", (request, response) => {
+    var id = request.params.id;
+    var updatedGroup = request.body;
 
-    contacts.update(name, updatedContact ,(err,numUpdates) => {
-        console.log("contacts updated:"+numUpdates);
+    groups.update(id, updatedGroup ,(err,numUpdates) => {
+        console.log("groups updated:"+numUpdates);
         if (numUpdates === 0) {
             response.sendStatus(404);    
         } else {
@@ -89,7 +89,7 @@ app.put(baseAPI + "/contacts/:name", (request, response) => {
         
     });
 
-    console.log("UPDATE /contacts/"+name);
+    console.log("UPDATE /groups/"+id);
 });
 
 

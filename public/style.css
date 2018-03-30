@@ -1,0 +1,40 @@
+header, h2{
+    margin-left: 30px;
+    margin-right: 30px;
+    
+    
+}
+
+section{
+    margin-top: 20px;
+}
+
+
+h1{
+    padding-top: 20px;
+}
+
+.formulario{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.logo{
+    padding-top: 25px;
+    width:auto;
+    height: 100px;
+}
+
+.boton{
+    float: right;
+    background-color: #e67e22;
+    
+}
+
+#modalwidth{
+    width: 50% ;
+}
+.width1{
+    width: 80% !important ;
+    
+}
