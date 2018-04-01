@@ -68,7 +68,11 @@ app.delete(baseAPI + "/groups/:id", (request, response) => {
 
     groups.remove(id,(err,numRemoved)=>{
         console.log("groups removed:"+numRemoved);
-        response.sendStatus(200);    
+        if (numRemoved === 0) {
+            response.sendStatus(404);    
+        } else {
+            response.sendStatus(200);    
+        }    
     });
 
     console.log("DELETE /groups/" + id);

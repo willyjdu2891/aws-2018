@@ -10,17 +10,18 @@ angular
                 //+ $scope.newGroup.id
                 //$scope._ID)
                 //$scope.componentes=$scope.newGroup.componentes;
-               // $scope.lines=$scope.newGroup.lineresearch;
+              // $scope.lines=$scope.newGroup.lineresearch;
                 $scope.groups = response.data[0];
-                $scope.newGroup= {name:"willy", id:"5"};
-                console.log($scope.newGroup)
-                console.log($scope.groups.name)
+               
             });
         }
         
         
          $scope.Item_id = function(id){
             $scope._ID = id;
+            $scope.groups.id=id
+            console.log(id);
+            
         }
         
         $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
@@ -65,10 +66,17 @@ angular
                 .then(function (){
                     console.log($scope.newGroup)
                     console.log($scope.groups[5])
-                   refresh();  
-                   // $scope.limpiar(); 
+                    if(require.status==200)
+                        alert("The " +$scope.groups.name+" group was successfully updated")
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Group with Id "+$scope.groups.id+" no found")
+                    
+                     // $scope.limpiar(); 
                     
                 });
+                refresh(); 
         }
         
         
@@ -93,7 +101,7 @@ angular
         
         }
         
-        $scope.delGroup = function (){
+    /*    $scope.delGroup = function (){
             
             $http
                 .delete("/api/v1/groups/"+ $scope.newGroup.id)
@@ -101,6 +109,22 @@ angular
                     refresh();  
                 });
         
+        } */
+        
+         $scope.deleteGroup = function (){
+            $http
+                .delete("/api/v1/groups/"+ $scope.groups.id)
+                .then(function (require){
+                    
+                    if(require.status==200)
+                        alert("The " +$scope.groups.name+" group was successfully deleted")
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Group with Id "+$scope.groups.id+" no found")
+                    
+                });
+                refresh();
         }
         
         $scope.UpdateGroup = function (){
@@ -109,9 +133,16 @@ angular
                 .put("/api/v1/groups/"+ $scope.groups.id, $scope.groups) 
                 .then(function (){
                     //refresh();
-                    $scope.limpiar();
+                    if(require.status==200)
+                        alert("The " +$scope.groups.name+" group was successfully updated")
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Group with Id "+$scope.groups.id+" no found")
+                    
+                    
                 });
-        
+            $scope.limpiar();
         }
         
         
