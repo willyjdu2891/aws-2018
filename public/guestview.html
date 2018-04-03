@@ -5,6 +5,9 @@
     <title>
         Research Groups
     </title>
+    
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!--for cards-->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +21,7 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>www.desarrollohidrocalido.com - Diego Lira</title> 
+      
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -32,19 +35,18 @@
     <!--------------------------------------------Scripts' start---------------------------------------------------------------------------------------->
     <!--------------------------------------------Scripts' start---------------------------------------------------------------------------------------->
     <script>
-        function addProfesor() {
-            var a = document.getElementById("textcomponents").value
-            var arrayOfStrings = document.getElementById("SelectTeacher").value.split('string:');
-            document.getElementById("textcomponents").value = a + "\n" + arrayOfStrings[1];
+        function Select() {
+            
+            document.getElementById("SelectTeacher").value=-1;
+            
         }
 
 
-        function addLines() {
-            var a = document.getElementById("textlines").value
-            var b = document.getElementById("inputlines").value
-            document.getElementById("textlines").value = b + "\n" + a;
-            document.getElementById("inputlines").value = null;
-            document.getElementById("inputlines").focus();
+        function Lines() {
+           
+             document.getElementById("inputlines").value= null;
+            // document.getElementById("inputlines").focus();
+            
         }
     </script>
 
@@ -58,28 +60,25 @@
     
 
 
-    <header>
+    <header class="bigheader">
         <br>
         <br>
-        <h1 class="header">Research Groups</h1>
+        <h1 class="header"><b>Research Groups</b></h1>
 
 
 
         <form class="formulario" name="frm" style="border:0px">
 
             <table class="table table-bordered " id=tabla>
-                <!--table-striped
+              
            
-               <!-- <tr> 
-                <td><label for="search">Search by:</label></td>
-                <td><input type="radio" name="gender" value="1"  id="radio1"  checked/>Group ID<br>
-                    <input type="radio" name="luis"  value="2"  id="radio2" >Group Name<br></td> -->
+               
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                             <input id="search" type="text"   class="form-control" ng-model="search" placeholder="Write the name or ID to search a group">
-                           <!-- <input  ng-model="_ID"> -->
+                           
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -89,19 +88,19 @@
                     <div class="col-lg-4">
                         <div class="addbutton">
 
-                            <button type="button" ng-click="addGroup()" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-trash"></span> Trash </button>
-                            <a href="#" class="btn btn-info "> <span class="glyphicon glyphicon-trash"></span> Trash  </a>
-
-                            <a href="#" class="btn btn-info "> <span class="glyphicon glyphicon-plus"></span> New group </a>
-                            <a href="#" class="btn btn-info "><span class="glyphicon glyphicon-off"></span> Log Out  </a>
-                            <a href="#" class="btn btn-info "> <span class="glyphicon glyphicon-refresh"></span> Refresh </a>
+                            <button type="button" ng-click="generarID() ; limpiar()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"></span>  </button>
+                           <!--  
+                       <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-off"></span> Editar</a>-->
+                        <button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-trash"></span>  </a>
+                           
+                            <button type="button" class="btn btn-default btn-sm" ng-click=" refresh()"> <span class="glyphicon glyphicon-refresh"></span> </a>
                         </div>
                     </div>
                 </div>
                 <br>
 
                 <thead>
-                    <!--      </tr>-->
+                    
 
                     <tr>
                         <th>ID</th>
@@ -114,13 +113,13 @@
 
                 <tbody>
 
-                    <!-- data-toggle="modal" data-target="#myModal" href="group.html"     ng-click="Item_id(contact.ID) ; getcon(contact.ID) " -->
+                     
                     <tr ng-repeat="group in groups | filter:search | limitTo:15 ">
-
-                        <td><a ng-click="Item_id(group.id) ; refreshOne(group.id) " data-toggle="modal" href="#myModal">{{group.id}}</a></td>
+                   
+                        <td class="center"><a ng-click="Item_id(group.id) ; refreshOne(id) " data-toggle="modal" href="#myModal1">{{group.id}}</a></td>
                         <td>{{group.name}}</td>
                         <td>{{group.responsable}}</td>
-                        <td>{{group.email}}</td>
+                        <td>{{group.email}}</td> 
 
                     </tr>
                 </tbody>
@@ -129,17 +128,15 @@
 
 
     </form>
-    </header>
+    
+    
+    </header> 
     <section>
         
     <form name="frm" style="border:1px">
-<!-------------------------------------------- Modal ----------------------------------------------------------------------------------------------- -->
-<!-------------------------------------------- Modal ----------------------------------------------------------------------------------------------- -->
+<!-------------------------------------------- Modal to add----------------------------------------------------------------------------------------------- -->
+<!-------------------------------------------- Modal to add----------------------------------------------------------------------------------------------- -->
         <div class="container">
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="width1 modal-dialog">
@@ -149,8 +146,9 @@
           <!----------- Modal header-------------------------------------->
           <!----------- Modal header-------------------------------------->
         <div class="modal-header">
+            <button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
           <h3 class=" modalheader modal-title">Research Groups Administration</h3>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
         </div>
         <!----------- Modal header-------------------------------------->
         <!----------- Modal header-------------------------------------->
@@ -172,11 +170,11 @@
                             <br>
                           <div class="row">
                             <div class="col-lg-2" style="color:#B43104">
-                                  <h4> Id </h4>  
+                                   <label for="id">ID: </label>  
                             </div>
             
                             <div class="col-lg-4" style="color:#B43104">  
-                                <input type="text" name="id" class="form-control" ng-model="groups.id" autofocus tabindex="1" required>
+                                <input type="text" name="id" class="form-control" ng-model="id"  tabindex="1" required>
                                 <span ng-show="frm.id.$dirty && frm.id.$error.required">Field Required</span> <!--ng-value="grupo[0].id" autofocus-->
                             </div>
                             <div class="col-lg-6" style="color:#B43104">
@@ -188,7 +186,7 @@
                              <br>
                         <div class="row">
                             <div class="col-lg-2" style="color:#B43104">
-                                  <h4> Name </h4>  
+                                  <label for="name">Name: </label>   
                             </div>
             
                             <div class="col-lg-4" style="color:#B43104">  
@@ -205,7 +203,7 @@
         
                         <div class="row">
                             <div class="col-lg-2" style="color:#B43104">
-                                 <h4>Responsable </h4> 
+                                 <label for="responsable">Responsable </label> 
                             </div>
             
          
@@ -225,7 +223,7 @@
          
                      <div class="row">
                         <div class="col-lg-2" style="color:#B43104">
-                              <h4>E-mail </h4>
+                              <label for="email">E-mail: </label> 
                         </div>
             
                         <div class="col-lg-4" style="color:#B43104">  
@@ -239,66 +237,28 @@
                 </div><!--div last body id=home-->
                         
                         
-        <!--      <div id="menu1" class="tab-pane fade">
-                                     <h3>Menu 1</h3>
-       <!-- Aqui inician los investigadores de los grupos
-        
-            <div class="row">
-                <div class="col-lg-12">
-                   <h3 style="color:#B43104">Components:</h3> 
-               </div>
-           </div>
-           <div class="row">
-               
-                <div class="col-lg-2" style="color:#B43104">
-                    <h4>Select a teacher </h4>
-                </div>
-               
-              <div class="col-lg-2" class="dropdown" with:"100px">
-                
-                <select class="seleccion" id="SelectTeacher" witdh:"40px" ng-options="profesor for profesor in profesores">
-                </select>
-                
-              </div>
-                <div class="col-lg-2" style="color:#B43104">
-                      <button class="btnshort btn-primary" onclick="addProfesor()">+</button>
-                </div>
-        </div> <br>
-        <div class="row">
-        <div class="col-lg-6" style="color:#B43104">
-               <textarea id="textcomponents" rows="20" cols="100" ng-model="groups.components"  style="width:700px; height:300px">
-                
-                </textarea>
-            </div> <br>
-        </div>
-        
-                </div><!--div last body id=menu1-->  
-                        
         <div id="menu2" class="tab-pane fade">
                     <!-- Desde aqui inician las lineas de investigación -->
                 <section> 
+                <br>
                    <div class="row">
-                       <div class="col-lg-12">
-                           <h3 style="color:#B43104">Lines of investigation:</h3> <br>
-                       </div> 
-                   </div>
-                   <div class="row">
-                       <div class="col-lg-2" style="color:#B43104">
-                        </div>
-                
-                       <div class="col-lg-2" class="dropdown" with:"100px">
-                           <input  class="inputline" id="inputlines">
-                       </div>
                        <div class="col-lg-2">
-                              <button class="btnshort btn-primary" onclick="addLines()">+</button>
+                            <label for="lines">Write the line to add</label> <br>
+                       </div> 
+                       
+                        <div class="col-lg-4" >
+                           <input  class="inputline" id="inputlines" ng-model="new.lines" style="width:360px">
                        </div>
-                    </div> <br>
+                       <div class="col-lg-6">
+                              <button class="btnshort btn-primary" onclick="Lines()" ng-click="addLines()">+</button>
+                       </div>
+                   </div>
+            <br>
        
                     <div class="row">
                         <div class="col-lg-6" style="color:#B43104">
-                           <textarea id="textlines" rows="20" cols="100" ng-model="groups.lineresearch"  style="width:700px; height:300px">
-                
-                           </textarea>
+                           <textarea id="textlines" rows="20" cols="100" ng-model="lines" name="textlines" style="width:700px; height:150px"  required ></textarea>
+                               <span ng-show="frm.textlines.$dirty && frm.textlines.$error.required">Field required</span>
                         </div> <br>
                     </div>
                 </section> <br>
@@ -309,52 +269,40 @@
                 
                 <!-- Aqui inician los investigadores de los grupos-->
             <section>
-                <div class="row">
+               <!--  <div class="row">
                     <div class="col-lg-12">
                        <h3 style="color:#B43104">Components:</h3> 
                    </div>
-                </div>
+                </div> -->
                 
                 <div class="row">
                
                     <div class="col-lg-2" style="color:#B43104">
-                        <h4>Select a teacher </h4>
+                        <br>
+                        <label for="member">Select a member to add</label>
+                
                     </div>
                
-                    <div class="col-lg-2" style="color:#B43104" >
-                
-                        <select class="seleccion" id="SelectTeacher" ng-model="seleccionado" ng-options="profesor for profesor in profesores" > <!--ng-options="profesor for profesor in profesores" -->
+                    <div class="col-lg-10" style="color:#B43104">
+                        <br>
+                        <select class="seleccion" id="SelectTeacher" ng-model="new.select" ng-options="profesor for profesor in profesores" style="width:250px;"> <!--ng-options="profesor for profesor in profesores" -->
                         </select>
-                
-                    </div>
-               
-                    <div class="col-lg-2" style="color:#B43104">
-                         <button class="btnshort btn-primary" onclick="addProfesor()">+</button>
+                         <button class="btnshort btn-primary" onclick="Select() " ng-click="addProfesor()">+</button> 
                     </div>
                 </div> <br>
                 
                 <div class="row">
                     <div class="col-lg-6" style="color:#B43104">
-                    <textarea id="textcomponents" rows="20" cols="100" ng-model="groups.components"  style="width:700px; height:300px">
+                    <textarea id="textcomponents" rows="20" cols="100" ng-model="componentes"  name="textcomponents" style="width:700px; height:150px"  required ></textarea>
+                               <span ng-show="frm.textcomponents.$dirty && frm.textcomponents.$error.required">Field required</span>
                 
-                    </textarea>
+                    
                 </div> <br>
         </div>
             </section>
         </div>    <!--div last body id=menu3-->           
                         
-                        
-                        
-                        
-                        
-                
-           
-               
-                
-               
-              
-                       
-                        
+                    
                         
                         
                   </div> <!--div last-2 body-->
@@ -364,12 +312,12 @@
         <!----------- Modal BODY-------------------------------------->
         
         <div class="modal-footer">
-            <button type="button" ng-click="addGroup()" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-trash"></span> Add </button>
-            <button class="btn btn-primary btn-md"  ng-click="addGroup()">Add Group</button>  <!--ng-disabled="!contactForm.$valid"-->
-          <button class="btn btn-primary btn-md" ng-click="refreshOne(group.id)">Find Group</button>  <!-- refreshOne(contact.id), -->
-          <button class="btn btn-primary" ng-click="UpdateGroup(group.id)">Update</button>
-          <button type="button" ng-click="deleteGroup()" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete Group </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" ng-click="addGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-plus"></span> Add </button>
+            
+          <button  type="button" class="btn btn-primary btn-sm" ng-click="refreshOne(id)"> <span class="glyphicon glyphicon-search"></span> Find </button>  <!-- refreshOne(contact.id), -->
+          <button class="btn btn-primary btn-sm" ng-click="UpdateGroup(id)"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+          <button type="button" ng-click="deleteGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
+          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
         </div>
       </div>
       
@@ -385,8 +333,244 @@
 <!-------------------------------------------- Modal ----------------------------------------------------------------------------------------------- -->
         </form>
     </section>
-    </form>
+    
+    
+    <section>
+        
+    <form name="frm1" style="border:1px">
+<!-------------------------------------------- Modal to edit----------------------------------------------------------------------------------------------- -->
+<!-------------------------------------------- Modal to edit----------------------------------------------------------------------------------------------- -->
+        <div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="width1 modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <!----------- Modal header-------------------------------------->
+          <!----------- Modal header-------------------------------------->
+        <div class="modal-header modaledit1">
+            <button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+          <h3 class=" modalheader modal-title">Research Groups Administration</h3>
+          
+        </div>
+        <!----------- Modal header-------------------------------------->
+        <!----------- Modal header-------------------------------------->
+        
+        
+        <!----------- Modal Body-------------------------------------->
+        <!----------- Modal BODY-------------------------------------->
+        <div class="modal-body">
+          <div class="container">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#homeedit">Group Details</a></li>
+             <!--   <li><a data-toggle="tab" href="#menu1">Menu 1</a></li> -->
+                <li><a data-toggle="tab" href="#menu3edit">Members</a></li>
+                <li><a data-toggle="tab" href="#menu2edit">Investigation Lines</a></li>
+              </ul>
+
+                  <div class="tab-content">
+                        <div id="homeedit" class="tab-pane fade in active">
+                            <br>
+                          <div class="row">
+                            <div class="col-lg-2" style="color:#B43104">
+                                   <label for="id">ID: </label>  
+                            </div>
+            
+                            <div class="col-lg-4" style="color:#B43104">  
+                                <input type="text" name="id" class="form-control" ng-model="groups.id"  tabindex="1" required disabled>
+                                <span ng-show="frm.id.$dirty && frm.id.$error.required">Field Required</span> <!--ng-value="grupo[0].id" autofocus-->
+                            </div>
+                            <div class="col-lg-6" style="color:#B43104">
+               
+                            </div> 
+              
+                          </div> 
+                          
+                             <br>
+                        <div class="row">
+                            <div class="col-lg-2" style="color:#B43104">
+                                  <label for="name">Name: </label>   
+                            </div>
+            
+                            <div class="col-lg-4" style="color:#B43104">  
+                                 <input class="form-control" ng-model="groups.name" name="name" type="text" tabindex="2" required disabled> <!--ng-value="grupo[0].name"-->
+                                 <span ng-show="frm.name.$dirty && frm.name.$error.required">Field Required</span>
+                            </div>
+            
+                            <div class="col-lg-4" style="color:#B43104">
+               
+                            </div> 
+            
+                        </div> <br>
+        
+        
+                        <div class="row">
+                            <div class="col-lg-2" style="color:#B43104">
+                                 <label for="responsable">Responsable </label> 
+                            </div>
+            
+         
+                            <div class="col-lg-4" style="color:#B43104">  
+                                 <input class="form-control" ng-model="groups.responsable" name="responsable" type="text" tabindex="3" required disabled> <!--ng-value="grupo[0].name"-->
+                                 <span ng-show="frm.responsable.$dirty && frm.responsable.$error.required">Field Required</span>
+                            </div> 
+            
+            
+        
+                            <div class="col-lg-4" style="color:#B43104"> 
+                   
+                            </div> 
+           
+                        </div> 
+        <br>
+         
+                     <div class="row">
+                        <div class="col-lg-2" style="color:#B43104">
+                              <label for="email">E-mail: </label> 
+                        </div>
+            
+                        <div class="col-lg-4" style="color:#B43104">  
+                             <input class="form-control" ng-model="groups.email" name="email" type="text" tabindex="4" required disabled> <!--ng-value="grupo[0].name"-->
+                                 <span ng-show="frm.email.$dirty && frm.email.$error.required">Field Required</span>
+                        </div>
+            
+                    </div> 
+                
+                    
+                </div><!--div last body id=home-->
+                        
+                        
+        <div id="menu2edit" class="tab-pane fade">
+                    <!-- Desde aqui inician las lineas de investigación -->
+                <section> 
+                <br>
+                   <div class="row">
+                       <div class="col-lg-2">
+                            <label for="lines">Write the line to add</label> <br>
+                       </div> 
+                       
+                        <div class="col-lg-4" >
+                           <input  class="inputline" id="inputlines" ng-model="new.lines" style="width:360px" disabled>
+                       </div>
+                       <div class="col-lg-6">
+                              <button class="btnshort btn-primary" onclick="Lines()" ng-click="addLines()" disabled>+</button>
+                       </div>
+                   </div>
+            <br>
+       
+                    <div class="row">
+                        <div class="col-lg-6" style="color:#B43104">
+                           <textarea id="textlines" rows="20" cols="100" ng-model="lines" name="textlines" style="width:700px; height:150px"  required disabled></textarea>
+                               <span ng-show="frm.textlines.$dirty && frm.textlines.$error.required">Field required</span>
+                        </div> <br>
+                    </div>
+                </section> <br>
+        </div><!--div last body id=menu2-->
+        
+        
+        <div id="menu3edit" class="tab-pane fade">
+                
+                <!-- Aqui inician los investigadores de los grupos-->
+            <section>
+               <!--  <div class="row">
+                    <div class="col-lg-12">
+                       <h3 style="color:#B43104">Components:</h3> 
+                   </div>
+                </div> -->
+                
+                <div class="row">
+               
+                    <div class="col-lg-2" style="color:#B43104">
+                        <br>
+                        <label for="member">Select a member to add</label>
+                
+                    </div>
+               
+                    <div class="col-lg-10" style="color:#B43104">
+                        <br>
+                        <select class="seleccion" id="SelectTeacher" ng-model="new.select" ng-options="profesor for profesor in profesores" style="width:250px;" disabled> <!--ng-options="profesor for profesor in profesores" -->
+                        </select>
+                         <button class="btnshort btn-primary" onclick="Select() " ng-click="addProfesor()" disabled >+</button> 
+                    </div>
+                </div> <br>
+                
+                <div class="row">
+                    <div class="col-lg-6" style="color:#B43104">
+                    <textarea id="textcomponents" rows="20" cols="100" ng-model="componentes"  name="textcomponents" style="width:700px; height:150px"  required disabled></textarea>
+                               <!--<span ng-show="frm.textcomponents.$dirty && frm.textcomponents.$error.required">Field required</span>-->
+                
+                    
+                </div> <br>
+        </div>
+            </section>
+        </div>    <!--div last body id=menu3-->           
+                        
+                    
+                        
+                        
+                  </div> <!--div last-2 body-->
+            </div> <!--div last-1 body-->
+        </div> <!--div last body-->
+        <!----------- Modal Body-------------------------------------->
+        <!----------- Modal BODY-------------------------------------->
+        
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+          <button type="button" ng-click="deleteGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
+          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>    
+    
+    
+    
+
+<!-------------------------------------------- Modal to edit ----------------------------------------------------------------------------------------------- -->
+<!-------------------------------------------- Modal to edit----------------------------------------------------------------------------------------------- -->
+        </form>
+    </section>
+   
+   <div class="row">
+       
+       <div class="col s12 m4">
+               <div class="w3-container" ng-repeat="group in groups | filter:search">
+  
+          <div class="divcards w3-card-4" style="width:50%;" >
+            <header class="w3-container w3-blue">
+                  <h1>Group Name:{{id}}</h1>
+            </header>
+
+            <div class="w3-container">
+               <p class="pcards">Group name:{{group.name}}</p> 
+                  <p class="pcards">Contact:{{group.email}}</p>
+            </div>
+
+    <footer class="w3-container w3-blue">
+     <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/321989-200.png" style="height:50px; width:auto"> Leader:<h5>{{group.responsable}}</h5>
+    </footer>
+  </div>
+  <br>
+  <br>
+</div>
+           
+     
+       
+   </div>
+           
+       </div>
+       
+       
+   </div>
+           
+   
+
 </body>
 
 
 </html>
+

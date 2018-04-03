@@ -13,15 +13,15 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-groups.add([{
+/*groups.add([{
  /*       name: "pepe",
         phone: "12345",
         email: "pepe@pepe.com"
     }, {
         name: "luis",
         phone: "67890",
-        email: "luis@pepe.com" */
-    }]);
+        email: "luis@pepe.com" 
+    }]); */
 
 app.get(baseAPI + "/groups", (request, response) => {
     console.log("GET /groups"); 
@@ -35,7 +35,14 @@ app.post(baseAPI + "/groups", (request, response) => {
     console.log("POST /groups");
     var group = request.body;
     groups.add(group);
-    response.sendStatus(201);
+    
+    if(groups.length==0){
+        response.sendStatus(503);
+    }
+    else{
+            response.sendStatus(201);
+
+    }
 });
 
 app.delete(baseAPI + "/groups", (request, response) => {
@@ -53,7 +60,7 @@ app.get(baseAPI + "/groups/:id", (request, response) => {
     var id = request.params.id;
 
     groups.get(id,(err,groups)=>{
-        if (groups.length === 0) {
+        if (groups.length == 0) {
             response.sendStatus(404);
         }
         else {

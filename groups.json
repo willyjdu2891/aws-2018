@@ -1,40 +1,9 @@
-{"_id":"0tJ3ux97LVd8bSQi"}
-{"_id":"1eXwq6ICBmq53cux"}
-{"_id":"3RT8aXo8tNBQquN7"}
-{"name":"TEST","responsable":"test1","email":"test","_id":"6vBbRb2oBZTQmIg2"}
-{"name":"test2","responsable":"test2","email":"test2","componentes":[],"lineresearch":[],"_id":"6yIzayLclOEtth3v"}
-{"_id":"79gD0CniDZXY3f7P"}
-{"_id":"9W8trxPf7NRxGEDI"}
-{"id":"36589","_id":"AFKKHJFTHlR6iXly"}
-{"_id":"Avf6KBdlZCCtNLR8"}
-{"_id":"Ee46c90xGLDuqdDs"}
-{"_id":"GJ3Qwk2XkQeKQAlv"}
-{"_id":"LQu76Ie2f4s1lzWh"}
-{"_id":"M7vtCgWJfCiztPgR"}
-{"_id":"PwOPjztzaQwPE6zF"}
-{"name":"Prueba7","id":"7","responsable":"Prueba7","email":"Prueba7@update.test","_id":"RdtYdvCMHw9uyMjv"}
-{"_id":"UjzKLfRc49mIc9Pb"}
-{"name":"test","responsable":"test","email":"test","componentes":[],"lineresearch":[],"_id":"Vbu3NsSlTDUMpmnf"}
-{"_id":"WBBBRHz18TTejRZI"}
-{"_id":"WMrWejoIZbQk9Rzp"}
-{"_id":"WYUP9vvtPmrCkA63"}
-{"_id":"Z5BmHopkvOfqMbtd"}
-{"_id":"Zvm2dYDLDu44VpcB"}
-{"_id":"b24En7OVq4l3S1aO"}
-{"_id":"bsZNB1mXX6bppUDd"}
-{"id":"1","name":"Fisica","responsable":"Pedro","email":"pedro@com","componentes":["lo"],"lineresearch":["lo"],"_id":"c24PYvBqj3LRhlgc"}
-{"_id":"cz4PkwIKpVeua2Iz"}
-{"name":"willy","id":"5","_id":"fFVBloxXkgBx2MeW","responsable":"prueba con update","email":"lamelma123"}
-{"_id":"kAvt5ITj8AIb5a8X"}
-{"name":"vb","id":"bv","responsable":"nh","email":"gyt","_id":"m000xRSyC3QvxPbA"}
-{"_id":"ns8NnLbhNRyXol7T"}
-{"name":"Prueba10","id":"10","responsable":"Prueba10","email":"Prueba10@update.test","_id":"qObfzrlZGkxWXk45"}
-{"_id":"qcg37f7YE2jCIsuu"}
-{"componentes":[],"lineresearch":[],"_id":"rh3QZ7ayU5foYkTC"}
-{"name":"Prueba7","id":"7","responsable":"Prueba7","email":"Prueba7@update.test","_id":"sYaEJEBWNNd7i6Oe"}
-{"name":"test3","id":"4","responsable":"test3","email":"test43","_id":"ss2QDOiCEIu8gJVO"}
-{"name":"test33","id":"3","_id":"uTuoibJCpD1NERjv"}
-{"id":"22","_id":"wTUzr9FGaF7gcKqy"}
-{"_id":"xw9WnmtK4s0CUwPr"}
-{"_id":"zIOtZLWXaTEuZScf"}
-{"_id":"T1WxGXtf3CMJ77Aq"}
+{"id":"28","name":"BIOLOGIA","responsable":"Josh A . Smith","email":"josh@example.com","_id":"1BtskzA8nEFhXezj","componentes":"undefinedManuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com\nMaria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com\n","lineresearch":"undefinedTest1\n"}
+{"name":"MATEMATICAS AVANZADAS","id":"7","responsable":"David Feliz","email":"David@example.com","componentes":"nullMaria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com\n","lineresearch":"Algebra\nEcuaciones","_id":"8UuVeCbC7xx7vm7y"}
+{"name":"LENGUAS EXTRANJERAS","id":"6","responsable":"Pedro Tejada","email":"pedro@example.com","componentes":"Jose Miguel | Tel: 369 52 41 58 | Email:jose.miguel@gmail.com","lineresearch":"Test lineas 1","_id":"BjGO7jAnXYCgwnkf"}
+{"name":"MODEL DRIVEN DEVELOPMENT","id":"4","responsable":"Willy De los Santos","email":"willy@example.com","componentes":"Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com\nManuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com\n","lineresearch":"undefined\nLinea 1\nlinea 2","_id":"Hkf5W7Iyvp8ZEnXq"}
+{"name":"TELECOMUNICACIONES","id":"3","responsable":"Paola Martinez","email":"paola@example.com","componentes":"undefinedMaria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com\nJose Miguel | Tel: 369 52 41 58 | Email:jose.miguel@gmail.com\nAna Ramirez | Tel: 698 99 66 45 | Email:ana.ramirez@gmail.com\n","lineresearch":"Linea1\nLinea2\nLinea3\nLinea4","_id":"k9FZkqgtVZi1xC2n"}
+{"name":"NETWORK TECHNOLOGY","id":"1","responsable":"J. Uribe","email":"uribe@example.com","componentes":" Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com\n","lineresearch":"linea\nlinea1\nlinea2","_id":"mYJ4XwoAiH7cfnAB"}
+{"name":"LENGUAJES  DE PROGRAMACION DE ALTO NIVEL","id":"9","responsable":"Jose Lopez","email":"lopez@example.com","componentes":"Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com\nAna Ramirez | Tel: 698 99 66 45 | Email:ana.ramirez@gmail.com\nDavid Feliz |Tel: 589 69 58 41 | Email:david@gmail.com\n","lineresearch":"Linea1\nLinea 2\nLinea 3","_id":"wOXw7p4iVTK4Vc1p"}
+{"name":"ROBOTICA","id":"5","responsable":"Pepe Quintana","email":"pepe@example.com","componentes":"Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com\nAna Ramirez | Tel: 698 99 66 45 | Email:ana.ramirez@gmail.com\n","lineresearch":"Lineas 2\nLineas 3\nLines 4\nLineas 5","_id":"wmZsqqFC5ohXpnfL"}
+{"$$deleted":true,"_id":"1BtskzA8nEFhXezj"}

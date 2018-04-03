@@ -4,25 +4,16 @@ angular
         
         console.log("Controller initialized");
         
-        //array para los profesores
-         $scope.refreshOne = function (){
-            $http.get("/api/v1/groups/" + $scope.groups.id) .then(function (response){ 
-                //+ $scope.newGroup.id
-                //$scope._ID)
-                //$scope.componentes=$scope.newGroup.componentes;
-              // $scope.lines=$scope.newGroup.lineresearch;
-                $scope.groups = response.data[0];
-               
-            });
-        }
-        
-        
-         $scope.Item_id = function(id){
+        $scope.Item_id = function(id){
             $scope._ID = id;
-            $scope.groups.id=id
+            $scope.groups.id=id;
+            $scope.id= $scope.groups.id;
             console.log(id);
+            console.log($scope.id);
+            $scope.groups.id=id;
             
         }
+        //array para los profesores
         
         $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
         'Jose Miguel | Tel: 369 52 41 58 | Email:jose.miguel@gmail.com','Manuel Risoto | Tel: 666 66 36 58 | Email:manuel.risoto@gmail.com','Ana Ramirez | Tel: 698 99 66 45 | Email:ana.ramirez@gmail.com', 
@@ -32,90 +23,137 @@ angular
         
         //agregar profesores al textarea
         $scope.componentes=[];
+
         $scope.addProfesor = function(){
             $scope.componentes += $scope.new.select+"\n";
+            $scope.new.select="";
         }
         
         
         //agregar lineas de investigacion al textarea addLines
         $scope.lines=[];
+
         $scope.addLines = function(){
             $scope.lines += $scope.new.lines+"\n";
+            $scope.new.lines="";
         }
+        
+        
+        $scope.generarID = function(){
+            //$scope.limpiar();
+            //$scope.groups=[];
+            $http.get("/api/v1/groups").then(function (response){
+                $scope.contador= response.data;
+                var c=0;
+                for (var i = 0; i < $scope.contador.length; i++) {
+                    c++;
+                }
+                
+                c++;
+                $scope.id= c.toString();
+                
+                
+                
+                
+            });
+        } 
         
         
         function refresh(){
             $http.get("/api/v1/groups").then(function (response){
                 $scope.groups = response.data; 
                 
+                if ($scope.groups.length==null) {
+                    $scope.groups = "No any groups" ;
+                }
+                
             });
+                
         }
         
-        
-        
-        $scope.addGroup = function (){
-            //console.log($scope.newGroup.id)
-            //$scope.newGroup.id=$scope._ID;
-            //console.log($scope.newGroup.id)
-           // $scope.groups.componentes=$scope.componentes;
-          // $scope.groups.lineresearch=$scope.lines;
-           $scope.newGroup={name:$scope.groups.name, id:$scope.groups.id, responsable:$scope.groups.responsable, email:$scope.groups.email};
-           
-            $http
-                .post("/api/v1/groups", $scope.newGroup)
-                .then(function (){
-                    console.log($scope.newGroup)
-                    console.log($scope.groups[5])
-                    if(require.status==200)
-                        alert("The " +$scope.groups.name+" group was successfully updated")
+         $scope.refreshOne = function (){
+            $http.get("/api/v1/groups/"+ $scope.id)
+            .then(function (response){
+                $scope.groups = response.data[0];
+                $scope.componentes=$scope.groups.componentes;
+                $scope.lines=$scope.groups.lineresearch;
+                
+                if(require.status==200)
+                        { }
                 })
                 .catch (function(rejection){
                     if(rejection.status == 404)
-                        alert("Group with Id "+$scope.groups.id+" no found")
-                    
-                     // $scope.limpiar(); 
-                    
+                        alert("Group with Id "+$scope.id+" no found")
                 });
-                refresh(); 
         }
         
+       $scope.addGroup = function (){
+            //$scope.newGroup= $scope.groups;
+            //$scope.newGroup.id= $scope.id;
+           // $scope.id=$scope.newGroup.id;
+            console.log($scope.newGroup)
+               //$scope.newGroup.id= $scope.generarID();
+          // $scope.newGroup.componentes=$scope.componentes;
+           //$scope.newGroup.lineresearch=$scope.lines;
+           $scope.newGroup={name:$scope.groups.name, id:$scope.id, responsable:$scope.groups.responsable, email:$scope.groups.email, componentes:$scope.componentes, lineresearch:$scope.lines};
+           console.log($scope.groups)
+            $http
+                .post("/api/v1/groups", $scope.newGroup)
+                .then(function (require){
+                   // refresh();
+                    if(require.status==201)
+                        alert("The " +$scope.newGroup.name+" group was successfully created");
+                         $scope.limpiar(); 
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 503)
+                        alert("Service not available");
+                
+                });
+                //refresh(); 
+                //$scope.limpiar();
+        }
         
         $scope.limpiar= function(){
-            $scope.newGroup.id=null;
-            $scope.newGroup.name=null;                
-            $scope.newGroup.responsable=null;                
-            $scope.newGroup.email=null;                
-            $scope.componentes=null;                
-            $scope.lines=null; 
+            $scope.id=null;
+            $scope.groups.id=null;                
+            $scope.groups.name=null;                
+            $scope.groups.responsable=null;                
+            $scope.groups.email=null;                
+            $scope.componentes=" ";                
+            $scope.lines=" "; 
             
         }
         
         
-        $scope.delGroupAll = function (){
+       /*$scope.delAllGroup = function (ev){
+          //  $mdDialog.show(
+              //  $mdDialog.alert()
+                //.parent(angular.element(documento.querySelector('#poputContainer')))
+                .clickOutsideToClose(true)
+                .title('Thi is an alert title')
+                .textContent('You can specific')
+                .arialLabel('Alert Dialog Demo')
+                .ok('Got it')
+                .targetEvent(ev)
+                )
             
+            
+            
+            /*
             $http
-                .delete("/api/v1/groups", $scope.delGroupAll)
+                .delete("/api/v1/groups", $scope.delAllGroup)
                 .then(function (){
                     refresh();  
-                });
-        
-        }
-        
-    /*    $scope.delGroup = function (){
-            
-            $http
-                .delete("/api/v1/groups/"+ $scope.newGroup.id)
-                .then(function (){
-                    refresh();  
-                });
+                }); 
         
         } */
         
-         $scope.deleteGroup = function (){
+        $scope.deleteGroup = function (){
             $http
                 .delete("/api/v1/groups/"+ $scope.groups.id)
                 .then(function (require){
-                    
+                    refresh();
                     if(require.status==200)
                         alert("The " +$scope.groups.name+" group was successfully deleted")
                 })
@@ -124,28 +162,31 @@ angular
                         alert("Group with Id "+$scope.groups.id+" no found")
                     
                 });
-                refresh();
+        
         }
         
         $scope.UpdateGroup = function (){
+            $scope.groups.componentes=$scope.componentes;
+            $scope.groups.lineresearch=$scope.lines;
             
             $http
                 .put("/api/v1/groups/"+ $scope.groups.id, $scope.groups) 
                 .then(function (){
                     //refresh();
-                    if(require.status==200)
-                        alert("The " +$scope.groups.name+" group was successfully updated")
-                })
-                .catch (function(rejection){
-                    if(rejection.status == 404)
-                        alert("Group with Id "+$scope.groups.id+" no found")
+                    $scope.limpiar();
+                
+                    
+                    
+                    
                     
                     
                 });
-            $scope.limpiar();
+        
         }
         
         
-       refresh();
+        refresh();
+        
+        
         
     });
