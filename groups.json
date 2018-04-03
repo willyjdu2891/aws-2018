@@ -1,13 +1,22 @@
-{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"luis@pepe.com","_id":"ort5KzuLpdEsPzYC"}
-{"$$deleted":true,"_id":"ort5KzuLpdEsPzYC"}
-{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"pepe@pepe.com","_id":"5GeJ8f2iOZ8k7AES"}
-{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"luis@pepe.com","_id":"U1TTADpn9LZhaO93"}
-{"$$deleted":true,"_id":"5GeJ8f2iOZ8k7AES"}
-{"$$deleted":true,"_id":"U1TTADpn9LZhaO93"}
-{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"pepe@pepe.com","_id":"hNCJmQAWEWEGJB3p"}
-{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"luis@pepe.com","_id":"YcpSxvPtRdtVq4JF"}
-{"$$deleted":true,"_id":"YcpSxvPtRdtVq4JF"}
-{"$$deleted":true,"_id":"hNCJmQAWEWEGJB3p"}
-{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"pepe@pepe.com","_id":"JVcM8KEpgZwx4sfD"}
-{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"luis@pepe.com","_id":"twOBP3T2PXepOlhM"}
-{"$$deleted":true,"_id":"JVcM8KEpgZwx4sfD"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"TSC2bbr2n40fa6iH"}
+{"$$deleted":true,"_id":"TSC2bbr2n40fa6iH"}
+{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"test@groups.com","_id":"9OCB5e2zRPPHSkzD"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"HHwQ7m398gBHrr1W"}
+{"$$deleted":true,"_id":"9OCB5e2zRPPHSkzD"}
+{"$$deleted":true,"_id":"HHwQ7m398gBHrr1W"}
+{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"test@groups.com","_id":"YPzL7rzix82JUhqu"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"M1HyCwBjB1ySY2hQ"}
+{"$$deleted":true,"_id":"M1HyCwBjB1ySY2hQ"}
+{"$$deleted":true,"_id":"YPzL7rzix82JUhqu"}
+{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"test@groups.com","_id":"zkGmrsyGbLZY918B"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"BiSvk83ymfL5Yq7k"}
+{"id":"99","name":"Mecatronica","responsable":"Juan Martinez","email":"updated@group.com","_id":"BiSvk83ymfL5Yq7k"}
+{"$$deleted":true,"_id":"BiSvk83ymfL5Yq7k"}
+{"$$deleted":true,"_id":"zkGmrsyGbLZY918B"}
+{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"test@groups.com","_id":"YXuiXc4sSc6pkocV"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"3R2vnTc6IyouPoM3"}
+{"$$deleted":true,"_id":"3R2vnTc6IyouPoM3"}
+{"$$deleted":true,"_id":"YXuiXc4sSc6pkocV"}
+{"id":"100","name":"Prueba Grunt","responsable":"Paola Martinez","email":"test@groups.com","_id":"FNXDxhCHbhac2KLq"}
+{"id":"99","name":"Mineria de datos","responsable":"David Felix","email":"test2@groups.com","_id":"TZnwo4hGpB0OLkyE"}
+{"$$deleted":true,"_id":"FNXDxhCHbhac2KLq"}

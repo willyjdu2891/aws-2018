@@ -12,21 +12,23 @@ describe('Groups', function() {
                 return done(err);
             }
             
+       
+           
             groups.add([{
                 id: "100",
                 name: "Prueba Grunt",
                 responsable: "Paola Martinez",
-                email: "pepe@pepe.com"
+                email: "test@groups.com"
             }, {
                 id: "99",
                 name: "Mineria de datos",
                 responsable: "David Felix",
-                email: "luis@pepe.com"
-            }], done);
+                email: "test2@groups.com"
+            }],done);
         });
     });
-    
-    describe('#allGroups()', function() {
+    //allGroups===================================================================================================================
+      describe('#allGroups()', function() {
         it('should return all Groups', function(done) {
             groups.allGroups((err, res) => {
                 if (err) {
@@ -41,7 +43,10 @@ describe('Groups', function() {
         });
     });
     
-    //inicio Prueba metodo get one
+    
+    
+    
+    //inicio Prueba metodo get one==============================================================================================
      describe('#One Group()', function() {
         it('should return group with id:99', function(done) {
             groups.get('99',(err, res) => {
@@ -57,29 +62,66 @@ describe('Groups', function() {
     });
     
     
-    // Fin de Prueba metodo get one
+    // Fin de Prueba metodo get one 
     
     
-    //inicio Prueba metodo get one
-     describe('#One Group()', function() {
-        it('should return group with id:99', function(done) {
-            groups.update('99',(err, res) => {
+    //inicio Prueba metodo update==============================================================================================
+     describe('#Update group()', function() {
+        it('should return an updated group with id:99/name: Mecatronica', function(done) {
+            groups.update('99', {"id":"99","name":"Mecatronica","responsable":"Juan Martinez","email":"updated@group.com"},(err) => {
                 if (err) {
                     return done(err);
                 
                     }
+                    
+                     groups.get('99',(err, res) => {
+                if (err) {
+                    return done(err);
+                
+                    } 
                 expect(res).to.have.lengthOf(1);
+                expect(res).to.contain.an.item.with.property('name', 'Mecatronica');
                 expect(res).to.contain.an.item.with.property('id', '99');
-                done();
+               done();
             });
         });
     });
+     });
     
     
     // Fin de Prueba metodo update
     
+    
+     // inicio de Prueba metodo remove all==================================================================================
+     
+      describe('#remove()', function() {
+        it('should remove all groups', function(done) {
+            groups.removeAll((err) => {
+                if (err) {
+                    return done(err);
+                }
+                
+                groups.allGroups((err,res) => {
+                    if (err) {
+                        return done(err);
+                    }
+                    
+                    expect(res).to.have.lengthOf(0);
+                    
+                    done();
+                });
+            });
+        });
+    }); 
+
+    
+    
+
+    
+    
+    // inicio de Prueba metodo remove one====================================================================================
     describe('#remove()', function() {
-        it('should remove the element', function(done) {
+        it('should remove the group with id:100', function(done) {
             groups.remove('100', (err) => {
                 if (err) {
                     return done(err);
@@ -96,5 +138,6 @@ describe('Groups', function() {
                 });
             });
         });
-    });
+    });  
+
 });
