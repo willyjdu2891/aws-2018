@@ -27,7 +27,7 @@ describe('Groups', function() {
     });
     
     describe('#allGroups()', function() {
-        it('should return all contacts', function(done) {
+        it('should return all Groups', function(done) {
             groups.allGroups((err, res) => {
                 if (err) {
                     return done(err);
@@ -40,6 +40,43 @@ describe('Groups', function() {
             });
         });
     });
+    
+    //inicio Prueba metodo get one
+     describe('#One Group()', function() {
+        it('should return group with id:99', function(done) {
+            groups.get('99',(err, res) => {
+                if (err) {
+                    return done(err);
+                
+                    }
+                expect(res).to.have.lengthOf(1);
+                expect(res).to.contain.an.item.with.property('id', '99');
+                done();
+            });
+        });
+    });
+    
+    
+    // Fin de Prueba metodo get one
+    
+    
+    //inicio Prueba metodo get one
+     describe('#One Group()', function() {
+        it('should return group with id:99', function(done) {
+            groups.update('99',(err, res) => {
+                if (err) {
+                    return done(err);
+                
+                    }
+                expect(res).to.have.lengthOf(1);
+                expect(res).to.contain.an.item.with.property('id', '99');
+                done();
+            });
+        });
+    });
+    
+    
+    // Fin de Prueba metodo update
     
     describe('#remove()', function() {
         it('should remove the element', function(done) {
