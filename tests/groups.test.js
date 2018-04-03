@@ -47,7 +47,7 @@ describe('Groups', function() {
     
     
     //inicio Prueba metodo get one==============================================================================================
-     describe('#One Group()', function() {
+     describe('#get one Group()', function() {
         it('should return group with id:99', function(done) {
             groups.get('99',(err, res) => {
                 if (err) {
@@ -94,7 +94,7 @@ describe('Groups', function() {
     
      // inicio de Prueba metodo remove all==================================================================================
      
-      describe('#remove()', function() {
+      describe('#remove all groups()', function() {
         it('should remove all groups', function(done) {
             groups.removeAll((err) => {
                 if (err) {
