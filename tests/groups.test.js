@@ -3,37 +3,39 @@
 var chai = require('chai');
 chai.use(require('chai-things'));
 var expect = chai.expect;
-var contacts = require('../contacts.js');
+var groups = require('../groups.js');
 
-describe('Contacts', function() {
+describe('Groups', function() {
     beforeEach(function(done) {
-        contacts.removeAll(function(err) {
+       groups.removeAll(function(err) {
             if (err) {
                 return done(err);
             }
             
-            contacts.add([{
-                name: "pepe",
-                phone: "12345",
+            groups.add([{
+                id: "100",
+                name: "Prueba Grunt",
+                responsable: "Paola Martinez",
                 email: "pepe@pepe.com"
             }, {
-                name: "luis",
-                phone: "67890",
+                id: "99",
+                name: "Mineria de datos",
+                responsable: "David Felix",
                 email: "luis@pepe.com"
             }], done);
         });
     });
     
-    describe('#allContacts()', function() {
+    describe('#allGroups()', function() {
         it('should return all contacts', function(done) {
-            contacts.allContacts((err, res) => {
+            groups.allGroups((err, res) => {
                 if (err) {
                     return done(err);
                 }
                 
                 expect(res).to.have.lengthOf(2);
-                expect(res).to.contain.an.item.with.property('name', 'pepe');
-                expect(res).to.contain.an.item.with.property('name', 'luis');
+                expect(res).to.contain.an.item.with.property('id', '100');
+                expect(res).to.contain.an.item.with.property('id', '99');
                 done();
             });
         });
@@ -41,18 +43,18 @@ describe('Contacts', function() {
     
     describe('#remove()', function() {
         it('should remove the element', function(done) {
-            contacts.remove('pepe', (err) => {
+            groups.remove('100', (err) => {
                 if (err) {
                     return done(err);
                 }
                 
-                contacts.allContacts((err,res) => {
+                groups.allGroups((err,res) => {
                     if (err) {
                         return done(err);
                     }
                     
                     expect(res).to.have.lengthOf(1);
-                    expect(res).not.to.contain.an.item.with.property('name', 'pepe');
+                    expect(res).not.to.contain.an.item.with.property('id', '100');
                     done();
                 });
             });
