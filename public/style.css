@@ -7,7 +7,13 @@
     
  
 .table{
-    background-color: #fff;
+    background-color:  rgba(255,255,255,.3);
+    color:#fff;
+    
+}
+
+.tdid{
+    color:darkblue;
 }
 
 
@@ -123,3 +129,8 @@ text-transform:uppercase;
 .btngroup{
     float:right;
 }
+
+label{
+    color:#B43104;
+}
+

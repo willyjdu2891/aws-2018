@@ -1,18 +1,32 @@
 angular
     .module("GroupListApp")
+    
     .controller("ListCtrl", function($scope,$http) {
         
         console.log("Controller initialized");
         
         $scope.Item_id = function(id){
-            $scope._ID = id;
-            $scope.groups.id=id;
-            $scope.id= $scope.groups.id;
+            $scope.id = id;
+           // $scope.groups.id=id;
+          // $scope.id= $scope.groups.id;
             console.log(id);
             console.log($scope.id);
-            $scope.groups.id=id;
+           
             
-        }
+             }
+             
+             
+            // $scope.getDataSource=function(condition){
+
+           // if(condition==undefined){ 
+                
+              //  return $scope.groups; 
+                
+           // }
+            
+          //   return $scope.groups;
+             
+          //  };
         //array para los profesores
         
         $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
@@ -63,9 +77,9 @@ angular
             $http.get("/api/v1/groups").then(function (response){
                 $scope.groups = response.data; 
                 
-                if ($scope.groups.length==null) {
-                    $scope.groups = "No any groups" ;
-                }
+               // if ($scope.groups.length==null) {
+                //    $scope.groups = "No any groups" ;
+               // }
                 
             });
                 
@@ -79,11 +93,12 @@ angular
                 $scope.lines=$scope.groups.lineresearch;
                 
                 if(require.status==200)
-                        { }
+                        {alert("Group with Id "+$scope.id+" found") }
                 })
                 .catch (function(rejection){
                     if(rejection.status == 404)
                         alert("Group with Id "+$scope.id+" no found")
+                        
                 });
         }
         
@@ -104,14 +119,17 @@ angular
                     if(require.status==201)
                         alert("The " +$scope.newGroup.name+" group was successfully created");
                          $scope.limpiar(); 
+                         refresh(); 
                 })
                 .catch (function(rejection){
                     if(rejection.status == 503)
                         alert("Service not available");
                 
                 });
-                //refresh(); 
+                refresh(); 
                 //$scope.limpiar();
+                
+                
         }
         
         $scope.limpiar= function(){
@@ -126,8 +144,8 @@ angular
         }
         
         
-       /*$scope.delAllGroup = function (ev){
-          //  $mdDialog.show(
+       $scope.delAllGroup = function (ev){
+         /* //  $mdDialog.show(
               //  $mdDialog.alert()
                 //.parent(angular.element(documento.querySelector('#poputContainer')))
                 .clickOutsideToClose(true)
@@ -138,16 +156,14 @@ angular
                 .targetEvent(ev)
                 )
             
-            
-            
-            /*
+            */
             $http
                 .delete("/api/v1/groups", $scope.delAllGroup)
                 .then(function (){
                     refresh();  
                 }); 
         
-        } */
+        } 
         
         $scope.deleteGroup = function (){
             $http
@@ -156,6 +172,7 @@ angular
                     refresh();
                     if(require.status==200)
                         alert("The " +$scope.groups.name+" group was successfully deleted")
+                        refresh()
                 })
                 .catch (function(rejection){
                     if(rejection.status == 404)
@@ -172,7 +189,7 @@ angular
             $http
                 .put("/api/v1/groups/"+ $scope.groups.id, $scope.groups) 
                 .then(function (){
-                    //refresh();
+                    refresh();
                     $scope.limpiar();
                 
                     
@@ -190,3 +207,5 @@ angular
         
         
     });
+    
+  
