@@ -31,6 +31,17 @@ app.get(baseAPI + "/groups", (request, response) => {
     });
 });
 
+app.post(baseAPI  + "/groups/:wrong", (request, response) => {
+    console.log("Method Not Allowed ");
+    response.sendStatus(405);    
+});
+
+
+app.put(baseAPI + "/groups", (request, response) => {
+  console.log("Method Not Allowed ");
+    response.sendStatus(405);   
+});
+
 app.post(baseAPI + "/groups", (request, response) => {
     console.log("POST /groups");
     var group = request.body;

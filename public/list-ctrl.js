@@ -16,17 +16,12 @@ angular
              }
              
              
-            // $scope.getDataSource=function(condition){
-
-           // if(condition==undefined){ 
-                
-              //  return $scope.groups; 
-                
-           // }
+        $scope.disableadd= function(){
+             {
+        return ($scope.unadd===false)
+}
             
-          //   return $scope.groups;
-             
-          //  };
+        }
         //array para los profesores
         
         $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
@@ -160,6 +155,14 @@ angular
             $http
                 .delete("/api/v1/groups", $scope.delAllGroup)
                 .then(function (){
+                    if(require.status==201)
+                        alert("All the  groups were successfully deleted");
+                         $scope.limpiar(); 
+                         refresh(); 
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 503)
+                        alert("Groups couldn't be deleted, Service not available");
                     refresh();  
                 }); 
         
@@ -191,7 +194,14 @@ angular
                 .then(function (){
                     refresh();
                     $scope.limpiar();
-                
+                if(require.status==201)
+                        alert("The " +$scope.newGroup.name+" group was successfully updated");
+                         $scope.limpiar(); 
+                         refresh(); 
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 503)
+                        alert("Service not available");
                     
                     
                     

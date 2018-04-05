@@ -174,7 +174,7 @@
                             </div>
             
                             <div class="col-lg-4" style="color:#B43104">  
-                                <input type="text" name="id" class="form-control" ng-model="id"  tabindex="1" required>
+                                <input type="text" name="id" class="form-control" ng-model="id"  tabindex="1" required readonly>
                                 <span ng-show="frm.id.$dirty && frm.id.$error.required">Field Required</span> <!--ng-value="grupo[0].id" autofocus-->
                             </div>
                             <div class="col-lg-6" style="color:#B43104">
@@ -227,7 +227,7 @@
                         </div>
             
                         <div class="col-lg-4" style="color:#B43104">  
-                             <input class="form-control" ng-model="groups.email" name="email" type="text" tabindex="4" required> <!--ng-value="grupo[0].name"-->
+                             <input class="form-control" ng-model="groups.email" name="email" type="email" tabindex="4" required> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.email.$dirty && frm.email.$error.required">Field Required</span>
                         </div>
             
@@ -319,12 +319,12 @@
         <!----------- Modal BODY-------------------------------------->
         
         <div class="modal-footer">
-            <button type="button" ng-click="addGroup()" class="btn btn-primary btn-sm" data-dismiss="modal"> <span class="glyphicon glyphicon-plus"></span> Add </button>
+            <button type="button" ng-click="addGroup()" class="btn btn-primary btn-sm" data-dismiss="modal" ng-disabled=""> <span class="glyphicon glyphicon-plus"></span> Add </button>
             
           
           <button class="btn btn-primary btn-sm" ng-click="UpdateGroup(id)" data-dismiss="modal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
           
-          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
+          <button type="button" ng-model="disabled="class="btn btn-primary btn-sm" data-dismiss="modal" onclick="document.location.reload();"><span class="glyphicon glyphicon-remove"></span> Close </button>
         </div>
       </div>
       
@@ -385,7 +385,7 @@
                             </div>
             
                             <div class="col-lg-4" style="color:#B43104">  
-                                <input type="text" name="id" class="form-control" ng-model="id"  tabindex="1" required disabled>
+                                <input type="text" name="id" class="form-control" ng-model="id"  tabindex="1" required readonly>
                                 <span ng-show="frm.id.$dirty && frm.id.$error.required">Field Required</span> <!--ng-value="grupo[0].id" autofocus-->
                             </div>
                             <div class="col-lg-6" style="color:#B43104">
@@ -401,7 +401,7 @@
                             </div>
             
                             <div class="col-lg-4" style="color:#B43104">  
-                                 <input class="form-control" ng-model="groups.name" name="name" type="text" tabindex="2" required disabled> <!--ng-value="grupo[0].name"-->
+                                 <input class="form-control" ng-model="groups.name" name="name" type="text" tabindex="2" required readonly> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.name.$dirty && frm.name.$error.required">Field Required</span>
                             </div>
             
@@ -419,7 +419,7 @@
             
          
                             <div class="col-lg-4" style="color:#B43104">  
-                                 <input class="form-control" ng-model="groups.responsable" name="responsable" type="text" tabindex="3" required disabled> <!--ng-value="grupo[0].name"-->
+                                 <input class="form-control" ng-model="groups.responsable" name="responsable" type="text" tabindex="3" required readonly> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.responsable.$dirty && frm.responsable.$error.required">Field Required</span>
                             </div> 
             
@@ -438,7 +438,7 @@
                         </div>
             
                         <div class="col-lg-4" style="color:#B43104">  
-                             <input class="form-control" ng-model="groups.email" name="email" type="text" tabindex="4" required disabled> <!--ng-value="grupo[0].name"-->
+                             <input class="form-control" ng-model="groups.email" name="email" type="text" tabindex="4" required readonly> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.email.$dirty && frm.email.$error.required">Field Required</span>
                         </div>
             
@@ -463,7 +463,7 @@
        
                     <div class="row form-group">
                         <div class="col-lg-6" style="color:#B43104">
-                           <textarea class="form-control" id="textlines" rows="5" cols="9" ng-model="lines" name="textlines"  required disabled></textarea>
+                           <textarea class="form-control" id="textlines" rows="5" cols="9" ng-model="lines" name="textlines"  required readonly></textarea>
                                <span ng-show="frm.textlines.$dirty && frm.textlines.$error.required">Field required</span>
                         </div> <br>
                     </div>
@@ -493,7 +493,7 @@
                 
                 <div class="row form-group">
                     <div class="col-lg-6" style="color:#B43104">
-                    <textarea class="form-control" id="textcomponents"  rows="5" cols="9" ng-model="componentes"  name="textcomponents"  required disabled></textarea>
+                    <textarea class="form-control" id="textcomponents"  rows="5" cols="9" ng-model="componentes"  name="textcomponents"  required readonly></textarea>
                                <!--<span ng-show="frm.textcomponents.$dirty && frm.textcomponents.$error.required">Field required</span>-->
                 
                     
@@ -514,7 +514,7 @@
         <div class="modal-footer">
           <button class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
           <button type="button" ng-click="deleteGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
-          <button type="button" class="btn btn-primary btn-sm" ng-click="limpiar()" onclick="document.location.reload();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
+          <button type="button" class="btn btn-primary btn-sm"  onclick="document.location.reload();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
         
         </div>
       </div>
@@ -532,40 +532,6 @@
         </form>
     </section>
    
-<!--   <div class="row">
-       
-       <div class="col s12 m4">
-               <div class="w3-container" ng-repeat="group in groups | filter:search">
-  
-          <div class="divcards w3-card-4" style="width:50%;" >
-            <header class="w3-container w3-blue">
-                  <h1>Group Name:{{id}}</h1>
-            </header>
-
-            <div class="w3-container">
-               <p class="pcards">Group name:{{group.name}}</p> 
-                  <p class="pcards">Contact:{{group.email}}</p>
-            </div>
-
-    <footer class="w3-container w3-blue">
-     <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/321989-200.png" style="height:50px; width:auto"> Leader:<h5>{{group.responsable}}</h5>
-    </footer>
-  </div>
-  <br>
-  <br>
-</div>
-           
-     
-       
-   </div>
-           
-       </div>
-       
-       
-   </div> -->
-           
-   
-
 </body>
 
 
