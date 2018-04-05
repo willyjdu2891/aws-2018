@@ -49,6 +49,29 @@
             
         }
     </script>
+    
+    <script>
+function deshabilita()
+{
+    var x= document.getElementById("add1");
+    var y= document.getElementById("up1");
+     x.disabled=true ;
+     y.disabled=false;
+    
+}
+
+function habilita()
+{
+    //var x= document.getElementById("add1");
+    var y= document.getElementById("up1");
+    // x.disabled=false ;
+     y.disabled=true;
+    
+    
+}
+</script>
+
+
 
     <!--------------------------------------------Scripts' end---------------------------------------------------------------------------------------->
     <!--------------------------------------------Scripts' end---------------------------------------------------------------------------------------->
@@ -77,7 +100,7 @@
                     <div class="col-lg-4">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                            <input id="search" type="text"   class="form-control" ng-model="search" placeholder="Write the name or ID to search a group">
+                            <input id="search" type="text"   class="form-control" ng-model="search" placeholder="Write the name of the group required">
                            
                         </div>
                     </div>
@@ -85,15 +108,15 @@
 
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 ">
                         <div class="addbutton">
 
-                            <button type="button" ng-click="generarID() ; limpiar()" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"></span>  </button>
-                           <!--  
+                            <button type="button" ng-click="generarID() ; limpiar()" onclick="habilita()"   class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"></span>  </button>
+                           <!--  "
                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-off"></span> Editar</a>-->
                         <button type="button" class="btn btn-default btn-sm" ng-click="delAllGroup()"> <span class="glyphicon glyphicon-trash"></span>  </a>
                           <button  type="button" class="btn btn-default btn-sm" onclick="document.location.reload();"><span class="glyphicon glyphicon-refresh"></span>
-        
+        <button type="button"  class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-off"></span> </button>
                         </div>
                     </div>
                 </div>
@@ -116,7 +139,7 @@
                     <tr ng-if= "groups.lenght>0" ></tr> 
                     <tr ng-repeat="group in groups |  filter:search | limitTo:15 ">
                    
-                        <td class="center"><a ng-click="Item_id(group.id)  ; refreshOne(id)" class="tdid" data-toggle="modal" href="#myModal1"><b>{{group.id}}</b></a></td>
+                        <td class="center"><a ng-click="Item_id(group.id)  ; refreshOne(id)" class="tdid" data-toggle="modal" href="#myModal1" style="color:##0000ff"><b>{{group.id}}</b></a></td>
                         <td>{{group.name}}</td>
                         <td>{{group.responsable}}</td>
                         <td>{{group.email}}</td> 
@@ -133,7 +156,7 @@
     </header> 
     <section>
         
-    <form name="frm" style="border:1px">
+    <form name="frm" style="border:1px" >
 <!-------------------------------------------- Modal to add----------------------------------------------------------------------------------------------- -->
 <!-------------------------------------------- Modal to add----------------------------------------------------------------------------------------------- -->
         <div class="container">
@@ -146,7 +169,7 @@
           <!----------- Modal header-------------------------------------->
           <!----------- Modal header-------------------------------------->
         <div class="modal-header">
-            <button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+          <!--  <button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button> -->
           <h3 class=" modalheader modal-title">Research Groups Administration</h3>
           
         </div>
@@ -159,10 +182,10 @@
         <div class="modal-body">
           <div class="container">
               <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Group Details</a></li>
+                <li class="active"><a data-toggle="tab" href="#home" >Group Details</a></li>
              <!--   <li><a data-toggle="tab" href="#menu1">Menu 1</a></li> -->
-                <li><a data-toggle="tab" href="#menu3">Members</a></li>
-                <li><a data-toggle="tab" href="#menu2">Investigation Lines</a></li>
+                <li><a data-toggle="tab" href="#menu3" >Members</a></li>
+                <li><a data-toggle="tab" href="#menu2" >Investigation Lines</a></li>
               </ul>
 
                   <div class="tab-content">
@@ -208,8 +231,9 @@
             
          
                             <div class="col-lg-4" style="color:#B43104">  
-                                 <input class="form-control" ng-model="groups.responsable" name="responsable" type="text" tabindex="3" required> <!--ng-value="grupo[0].name"-->
+                                 <input  class="form-control" ng-model="groups.responsable" id="responsable" ng-pattern="/^[a-zA-Z +]*$/" name="responsable" type="text" tabindex="3" required> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.responsable.$dirty && frm.responsable.$error.required">Field Required</span>
+                                 <span ng-show="frm.responsable.$dirty && frm.responsable.$invalid">Please not numbers</span>
                             </div> 
             
             
@@ -229,6 +253,8 @@
                         <div class="col-lg-4" style="color:#B43104">  
                              <input class="form-control" ng-model="groups.email" name="email" type="email" tabindex="4" required> <!--ng-value="grupo[0].name"-->
                                  <span ng-show="frm.email.$dirty && frm.email.$error.required">Field Required</span>
+        
+                                 <h1>{{frm.$invalid}}</h1>
                         </div>
             
                     </div> 
@@ -257,7 +283,7 @@
        
                     <div class="row form-group">
                         <div class="col-lg-6" style="color:#B43104">
-                           <textarea id="textlines" rows="5" cols="9" ng-model="lines" name="textlines" class="form-control"  required ></textarea>
+                           <textarea id="textlines" rows="5" cols="9" ng-model="lines" name="textlines" class="form-control"  type="text" required ></textarea>
                                <span ng-show="frm.textlines.$dirty && frm.textlines.$error.required">Field required</span>
                         </div> <br>
                     </div>
@@ -319,12 +345,13 @@
         <!----------- Modal BODY-------------------------------------->
         
         <div class="modal-footer">
-            <button type="button" ng-click="addGroup()" class="btn btn-primary btn-sm" data-dismiss="modal" ng-disabled=""> <span class="glyphicon glyphicon-plus"></span> Add </button>
+            <button  id="add1" type="button" ng-click="addGroup() "   ng-disabled="!frm.$valid" class="btn btn-primary btn-sm" data-dismiss="modal" > <span class="glyphicon glyphicon-plus"></span> Add </button>
             
           
-          <button class="btn btn-primary btn-sm" ng-click="UpdateGroup(id)" data-dismiss="modal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+          <button id ="up1" class="btn btn-primary btn-sm" ng-click="UpdateGroup(id)" data-dismiss="modal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
           
-          <button type="button" ng-model="disabled="class="btn btn-primary btn-sm" data-dismiss="modal" onclick="document.location.reload();"><span class="glyphicon glyphicon-remove"></span> Close </button>
+          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" onclick="document.location.reload();"><span class="glyphicon glyphicon-remove"></span> Close </button>
+        
         </div>
       </div>
       
@@ -357,7 +384,7 @@
           <!----------- Modal header-------------------------------------->
           <!----------- Modal header-------------------------------------->
         <div class="modal-header modaledit1">
-            <button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            <!--<button type="button" class="close btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>-->
           <h3 class=" modalheader modal-title">Research Groups Administration</h3>
           
         </div>
@@ -512,7 +539,7 @@
         <!----------- Modal BODY-------------------------------------->
         
         <div class="modal-footer">
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+          <button class="btn btn-primary btn-sm" onclick="deshabilita()" data-dismiss="modal" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
           <button type="button" ng-click="deleteGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
           <button type="button" class="btn btn-primary btn-sm"  onclick="document.location.reload();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
         

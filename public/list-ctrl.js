@@ -16,12 +16,18 @@ angular
              }
              
              
-        $scope.disableadd= function(){
-             {
-        return ($scope.unadd===false)
-}
-            
+        $scope.active=function(){
+            if( $scope.groups.name== null  || $scope.groups.responsable==null || $scope.groups.email==null) {
+            $scope.start1=true;
+            console.log( $scope.start1)
         }
+        else{
+                        $scope.start1=false;
+                        console.log( $scope.start1)
+
+        }
+        }  
+        
         //array para los profesores
         
         $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
