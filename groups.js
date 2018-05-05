@@ -40,7 +40,7 @@ Groups.prototype.remove = function(id, callback) {
 };
 
 Groups.prototype.update = function(id, updatedGroup, callback) {
-    return db.updateOne({id:id},updatedGroup,{}, callback);
+    return db.update({id:id},updatedGroup,{}, callback);
 };
 
 module.exports = new Groups();
