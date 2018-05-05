@@ -12,4 +12,4 @@ script:
   - grunt test
   
 services: 
-  -mongodb
+  - mongodb
