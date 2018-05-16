@@ -5,25 +5,45 @@ var bodyParser = require("body-parser");
 var path = require('path');
 var groups = require("./groups.js");
 
+
+var passport = require('passport');
+var BasicStrategy = require('passport-http').BasicStrategy;
+var LocalAPIKey = require('passport-localapikey').Strategy;
+var users = require('./users.js');
+
+var cors = require('cors');
 var port = (process.env.PORT || 16778);
 var baseAPI = "/api/v1";
 
 var app = express();
 
+passport.use(new BasicStrategy(
+    function(username, password, done) {
+        users.findOne({ username: username }, function (err, user) {
+          if (err) { return done(err); }
+          if (!user) { return done(null, false); }
+          if (!user.validPassword(password)) { return done(null, false); }
+          return done(null, user);
+        });
+    }
+));
+
+passport.use(new LocalAPIKey(
+    function(apikey, done) {
+        users.findOne({ apikey: apikey }, function (err, user) {
+          if (err) { return done(err); }
+          if (!user) { return done(null, false); }
+          return done(null, user);
+        });
+    }
+));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(cors());
 
-/*groups.add([{
- /*       name: "pepe",
-        phone: "12345",
-        email: "pepe@pepe.com"
-    }, {
-        name: "luis",
-        phone: "67890",
-        email: "luis@pepe.com" 
-    }]); */
-
-app.get(baseAPI + "/groups", (request, response) => {
+app.get(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     console.log("GET /groups"); 
     
     groups.allGroups((err,groups)=>{
@@ -115,6 +135,20 @@ app.put(baseAPI + "/groups/:id", (request, response) => {
 });
 
 
-app.listen(port, () => {
-    console.log("Server with GUI up and running!!");
+groups.connectDb((err) => {
+    if (err) {
+        console.log("Could not connect with MongoDB");
+        process.exit(1);
+    }
+    
+    users.connectDb((err) => {
+        if (err) {
+            console.log("Could not connect with MongoDB");
+            process.exit(1);
+        }
+        app.listen(port, () => {
+            console.log("Server with GUI up and running!!");
+        });   
+        
+    });
 });
