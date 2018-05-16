@@ -42,6 +42,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(cors());
 
+
 app.get(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {session:false}),
 (request, response) => {
     console.log("GET /groups"); 
