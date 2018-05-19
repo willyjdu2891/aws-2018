@@ -30,7 +30,81 @@ angular
         
         //array para los profesores
         
-        $scope.profesores = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
+            $scope.getresearchers= function(require){
+            $http.get("/api/v1/researchers").then(function (response){
+                if(response.status==200)
+                       $scope.researchers = response.data; 
+                $scope.contador=$scope.researchers.length;
+                $scope.profesores=[];
+                 for( var i=0; i < $scope.contador; i++){
+                     $scope.profesores[i]= $scope.researchers[i].name;
+                     
+                    $scope.profesores[i] += ' | Phone '+ $scope.researchers[i].phone;
+                    $scope.profesores[i] += ' | E-mail '+ $scope.researchers[i].mail;
+                 } 
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Investigator list will not be  available");
+                    
+              
+            });
+                
+        }
+        
+        
+        
+        
+        $scope.getprojects= function(require){
+            $http.get("/api/v1/projects").then(function (response){
+                if(response.status==200)
+                       $scope.projects = response.data; 
+                       console.log( $scope.projects);
+                $scope.contador=$scope.projects.length;
+                $scope.proyectos1=[];
+                 for( var i=0; i < $scope.contador; i++){
+                     $scope.proyectos1[i]= $scope.projects[i].projname;
+    
+                    
+                 } 
+                 console.log($scope.proyectos1);
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Projects list will not be  available");
+                    
+              
+            });
+                
+        }
+        
+        $scope.getuniversities= function(require){
+            $http.get("/api/v1/universities").then(function (response){
+                if(response.status==200)
+                       $scope.universities = response.data; 
+                      
+                $scope.contador=$scope.universities.length;
+                $scope.universidad1=[];
+                 for( var i=0; i < $scope.contador; i++){
+                     $scope.universidad1[i]= $scope.universities[i].name;
+    
+                    
+                 } 
+                 console.log($scope.universidad1);
+                })
+                .catch (function(rejection){
+                    if(rejection.status == 404)
+                        alert("Universities list will not be  available");
+                    
+              
+            });
+                
+        }
+        //2487-9632-2588-8574
+        
+        //$scope.profesores= $scope.researchers JSON.parse(;
+        
+        $scope.profesores2 = ['Manuel Resinas | Tel: 589 63 52 41 | Email:manuel.resinas@gmail.com','Maria Escalona | Tel: 365 85 74 12 | Email:maria.escalona@gmail.com',
         'Jose Miguel | Tel: 369 52 41 58 | Email:jose.miguel@gmail.com','Manuel Risoto | Tel: 666 66 36 58 | Email:manuel.risoto@gmail.com','Ana Ramirez | Tel: 698 99 66 45 | Email:ana.ramirez@gmail.com', 
         'David Feliz |Tel: 589 69 58 41 | Email:david@gmail.com']
             
@@ -74,6 +148,8 @@ angular
         } 
         
         
+    
+        
         function refresh(){
             $http.get("/api/v1/groups").then(function (response){
                 $scope.groups = response.data; 
@@ -111,7 +187,7 @@ angular
                //$scope.newGroup.id= $scope.generarID();
           // $scope.newGroup.componentes=$scope.componentes;
            //$scope.newGroup.lineresearch=$scope.lines;
-           $scope.newGroup={name:$scope.groups.name, id:$scope.id, responsable:$scope.groups.responsable, email:$scope.groups.email, componentes:$scope.componentes, lineresearch:$scope.lines};
+           $scope.newGroup={name:$scope.groups.name, id:$scope.id, responsable:$scope.groups.responsable, email:$scope.groups.email, componentes:$scope.componentes, lineresearch:$scope.lines, university:$scope.groups.universidad};
            console.log($scope.groups)
             $http
                 .post("/api/v1/groups", $scope.newGroup)
@@ -216,8 +292,9 @@ angular
                 });
         
         }
-        
-        
+        $scope.getuniversities();
+         $scope.getprojects();
+        $scope.getresearchers();
         refresh();
         
         
