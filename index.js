@@ -4,8 +4,10 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require('path');
 var groups = require("./groups.js");
-
-
+var request = require('request').defaults({json: true});
+var researchers = require('./integration/researchers.js');
+var projects = require('./integration/projects.js');
+var universities= require('./integration/universities.js');
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var LocalAPIKey = require('passport-localapikey').Strategy;
@@ -43,6 +45,73 @@ app.use(passport.initialize());
 app.use(cors());
 
 
+// (START) FOR CONCATENATION WITH RESEARCHERS API//
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+
+app.get(baseAPI + "/researchers", (req, response) => {
+    console.log("GET /researchers"); 
+
+    request.get(researchers("/researchers"), (error, resp, body) => {
+        if (error) {
+            console.log('error:'+error);
+            response.sendStatus(500);
+        } else {
+            response.send(body);
+        }
+    });
+});
+
+
+// (END) FOR CONCATENATION WITH RESEARCHERS API//
+
+
+
+// (START) FOR CONCATENATION WITH PROJECTS API//
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+
+app.get(baseAPI + "/projects", (req, response) => {
+    console.log("GET /projects"); 
+
+    request.get(projects("/projects"), (error, resp, body) => {
+        if (error) {
+            console.log('error:'+error);
+            response.sendStatus(500);
+        } else {
+            response.send(body);
+        }
+    });
+});
+
+
+// (END) FOR CONCATENATION WITH PROJECTS API//
+
+// (START) FOR CONCATENATION WITH UNIVERSITIES API//
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+
+app.get(baseAPI + "/universities", (req, response) => {
+    console.log("GET /universities"); 
+
+    request.get(universities("/universities"), (error, resp, body) => {
+        if (error) {
+            console.log('error:'+error);
+            response.sendStatus(500);
+        } else {
+            response.send(body);
+        }
+    });
+});
+
+
+// (END) FOR CONCATENATION WITH UNIVERSITIES API//
+
+
+
 app.get(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {session:false}),
 (request, response) => {
     console.log("GET /groups"); 
@@ -52,18 +121,21 @@ app.get(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {sess
     });
 });
 
-app.post(baseAPI  + "/groups/:wrong", (request, response) => {
+app.post(baseAPI  + "/groups/:wrong",passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     console.log("Method Not Allowed ");
     response.sendStatus(405);    
 });
 
 
-app.put(baseAPI + "/groups", (request, response) => {
+app.put(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
   console.log("Method Not Allowed ");
     response.sendStatus(405);   
 });
 
-app.post(baseAPI + "/groups", (request, response) => {
+app.post(baseAPI + "/groups", passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     console.log("POST /groups");
     var group = request.body;
     groups.add(group);
@@ -77,7 +149,8 @@ app.post(baseAPI + "/groups", (request, response) => {
     }
 });
 
-app.delete(baseAPI + "/groups", (request, response) => {
+app.delete(baseAPI + "/groups",passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     console.log("DELETE /groups");
 
     groups.removeAll((err,numRemoved)=>{
@@ -87,7 +160,8 @@ app.delete(baseAPI + "/groups", (request, response) => {
 
 });
 
-app.get(baseAPI + "/groups/:id", (request, response) => {
+app.get(baseAPI + "/groups/:id", passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     console.log("GET /groups/"+id);
     var id = request.params.id;
 
@@ -102,7 +176,8 @@ app.get(baseAPI + "/groups/:id", (request, response) => {
 });
 
 
-app.delete(baseAPI + "/groups/:id", (request, response) => {
+app.delete(baseAPI + "/groups/:id", passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     var id = request.params.id;
 
     groups.remove(id,(err,numRemoved)=>{
@@ -118,7 +193,8 @@ app.delete(baseAPI + "/groups/:id", (request, response) => {
 });
 
 
-app.put(baseAPI + "/groups/:id", (request, response) => {
+app.put(baseAPI + "/groups/:id", passport.authenticate(['basic','localapikey'], {session:false}),
+(request, response) => {
     var id = request.params.id;
     var updatedGroup = request.body;
 
