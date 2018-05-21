@@ -50,7 +50,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.get(baseAPI + "/researchers", (req, response) => {
+app.get(baseAPI + "/researchers", passport.authenticate(['basic','localapikey'], {session:false}), (req, response) => {
     console.log("GET /researchers"); 
 
     request.get(researchers("/researchers"), (error, resp, body) => {
@@ -73,7 +73,7 @@ app.get(baseAPI + "/researchers", (req, response) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.get(baseAPI + "/projects", (req, response) => {
+app.get(baseAPI + "/projects", passport.authenticate(['basic','localapikey'], {session:false}), (req, response) => {
     console.log("GET /projects"); 
 
     request.get(projects("/projects"), (error, resp, body) => {
@@ -94,7 +94,7 @@ app.get(baseAPI + "/projects", (req, response) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.get(baseAPI + "/universities", (req, response) => {
+app.get(baseAPI + "/universities",  (req, response) => {
     console.log("GET /universities"); 
 
     request.get(universities("/universities"), (error, resp, body) => {
