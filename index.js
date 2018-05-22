@@ -42,7 +42,8 @@ passport.use(new LocalAPIKey(
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-app.use(cors({origin:'https://www.heroku.com'}));
+
+app.use(cors());
 
 
 // (START) FOR CONCATENATION WITH RESEARCHERS API//
