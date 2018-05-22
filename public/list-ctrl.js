@@ -111,12 +111,28 @@ angular
         $scope.seleccionado="";
         
         //agregar profesores al textarea
-        $scope.componentes=[];
+       var componentes=[];
 
         $scope.addProfesor = function(){
-            $scope.componentes += $scope.new.select+"\n";
+            
+            
+            //$scope.x =0 ;
+            //console.log($scope.x);
+            //
+           $scope.componentes += $scope.new.select+"\n";
+           
+             componentes.push({name:$scope.new.select});
+              $scope.componentes=componentes;          
+            console.log(componentes);
+            console.log($scope.componentes);
+           // $scope.componentes2[$scope.x]=$scope.new.select;
+            
+           // $scope.componentes2 =$scope.componentes2.push($scope.componentes);
+            
             $scope.new.select="";
-        }
+           
+            
+            }
         
         
         //agregar lineas de investigacion al textarea addLines
