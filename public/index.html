@@ -111,12 +111,13 @@ function habilita()
                     <div class="col-lg-4 ">
                         <div class="addbutton">
 
-                            <button type="button" ng-click="generarID() ; limpiar()" onclick="habilita()"   class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"></span>  </button>
+                            <button type="button" ng-click="generarID() ; limpiar()" onclick="habilita()"   class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"> </span> Add </button>
                            <!--  
                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-off"></span> Editar</a>
                          <button type="button"  class="btn btn-danger btn-sm "onclick="window.close()"> <span class="glyphicon glyphicon-off"></span> </button>
                         <button type="button" class="btn btn-default btn-sm" ng-click="delAllGroup()"> <span class="glyphicon glyphicon-trash"></span>  </a> -->
-                          <button  type="button" class="btn btn-default btn-sm" onclick="location.href='researchers.html'"><span class="glyphicon glyphicon-user"></span>
+                          <button  type="button" class="btn btn-default btn-sm" onclick="location.href='researchers.html'"><span class="glyphicon glyphicon-user"> </span> Researchers</button>
+                          <button  type="button" class="btn btn-default btn-sm" onclick="location.href='stats.html'"><span class="glyphicon glyphicon-stats"></span> Stats</button>
        
                         </div>
                     </div>
@@ -350,7 +351,7 @@ function habilita()
                 
                 <div class="row form-group">
                     <div class="col-lg-6" style="color:#B43104">
-                    <textarea class="form-control" id="textcomponents" rows="5" cols="9" ng-model="componentes"  name="textcomponents"   required ></textarea>
+                    <textarea class="form-control" id="textcomponents" rows="5" cols="9" ng-model="componentes1"  name="textcomponents"   required ></textarea>
                                <span ng-show="frm.textcomponents.$dirty && frm.textcomponents.$error.required">Field required</span>
                 
                     
@@ -369,10 +370,10 @@ function habilita()
         <!----------- Modal BODY-------------------------------------->
         
         <div class="modal-footer">
-            <button  id="add1" type="button" ng-click="addGroup() "   ng-disabled="!frm.$valid" class="btn btn-primary btn-sm" data-dismiss="modal" > <span class="glyphicon glyphicon-plus"></span> Add </button>
+            <button  id="add1" type="button" ng-click="addGroup() "  onclick="document.location.reload()" ng-disabled="!frm.$valid" class="btn btn-primary btn-sm" data-dismiss="modal" > <span class="glyphicon glyphicon-plus"></span> Add </button>
             
           
-          <button id ="up1" class="btn btn-primary btn-sm" ng-click="UpdateGroup(id)" data-dismiss="modal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+          <button id ="up1" class="btn btn-primary btn-sm" ng-click="UpdateGroup()" data-dismiss="modal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
           
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" onclick="document.location.reload();"><span class="glyphicon glyphicon-remove"></span> Close </button>
         
@@ -555,7 +556,7 @@ function habilita()
                 
                 <div class="row form-group">
                     <div class="col-lg-6" style="color:#B43104">
-                    <textarea class="form-control" id="textcomponents"  rows="5" cols="9" ng-model="componentes"  name="textcomponents"  required readonly></textarea>
+                    <textarea class="form-control" id="textcomponents"  rows="5" cols="9" ng-model="componentes1"  name="textcomponents"  required readonly></textarea>
                                <!--<span ng-show="frm.textcomponents.$dirty && frm.textcomponents.$error.required">Field required</span>-->
                 
                     
@@ -575,7 +576,7 @@ function habilita()
         
         <div class="modal-footer">
           <button class="btn btn-primary btn-sm" onclick="deshabilita()" data-dismiss="modal" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
-          <button type="button" ng-click="deleteGroup()" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
+          <button type="button" ng-click="deleteGroup()" onclick="document.location.reload();" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-trash"></span> Delete </button>
           <button type="button" class="btn btn-primary btn-sm"  onclick="document.location.reload();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
         
         </div>

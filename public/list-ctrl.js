@@ -112,14 +112,14 @@ angular
         
         //agregar profesores al textarea
        var componentes=[];
-
+$scope.componentes1=[];
         $scope.addProfesor = function(){
             
             
             //$scope.x =0 ;
             //console.log($scope.x);
             //
-           $scope.componentes += $scope.new.select+"\n";
+           $scope.componentes1 += $scope.new.select+"\n";
            
              componentes.push({name:$scope.new.select});
               $scope.componentes=componentes;          
@@ -182,7 +182,7 @@ angular
             $http.get("/api/v1/groups/"+ $scope.id)
             .then(function (response){
                 $scope.groups = response.data[0];
-                $scope.componentes=$scope.groups.componentes;
+                $scope.componentes1=$scope.groups.componentes1;
                 $scope.lines=$scope.groups.lineresearch;
                 
                 if(require.status==200)
@@ -203,7 +203,7 @@ angular
                //$scope.newGroup.id= $scope.generarID();
           // $scope.newGroup.componentes=$scope.componentes;
            //$scope.newGroup.lineresearch=$scope.lines;
-           $scope.newGroup={name:$scope.groups.name, id:$scope.id, responsable:$scope.groups.responsable, email:$scope.groups.email, componentes:$scope.componentes, lineresearch:$scope.lines, university:$scope.groups.universidad};
+           $scope.newGroup={name:$scope.groups.name, id:$scope.id, responsable:$scope.groups.responsable, email:$scope.groups.email, componentes:$scope.componentes, componentes1:$scope.componentes1, lineresearch:$scope.lines, university:$scope.groups.universidad};
            console.log($scope.groups)
             $http
                 .post("/api/v1/groups", $scope.newGroup)
@@ -233,6 +233,7 @@ angular
             $scope.groups.email=null;                
             $scope.componentes=" ";                
             $scope.lines=" "; 
+            $scope.componentes1=" ";
             
         }
         
